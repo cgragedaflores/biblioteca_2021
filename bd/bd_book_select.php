@@ -1,4 +1,24 @@
 <?php
+include 'bd_connect.php';
+
+if (isset($_POST['search'])) {
+    $word = $_POST['search'];
+    $query = "SELECT * FROM _33_book WHERE title LIKE '%$word%' OR author LIKE '%$word%' ";
+}else{
+    $query = "SELECT * FROM _33_book limit 5 ";
+}
+$result = $conn->query($query);
+if ($result->num_rows > 0) {
+    if(empty($_SESSION)){
+        session_start();
+        imprimirLibroAdmin($result);
+    }else{
+        imprimirLibroAdmin($result);
+    }
+    
+}
+?>
+<?php
 function imprimirLibroGuest($result)
 {
     while ($fila = $result->fetch_assoc()) {
@@ -7,7 +27,6 @@ function imprimirLibroGuest($result)
             $portada = $_SERVER['DOCUMENT_ROOT'] . "/biblioteca/img/" . $fila['imageName'];
         }
         $currentBook = $fila['book_id'];
-        echo $portada;
         ?>
 <tr >
     <td>
@@ -56,23 +75,4 @@ function imprimirLibroAdmin($result)
 <?php
 } //fin while
 } //fin function
-?>
-<?php
-include 'bd_connect.php';
-
-if (isset($_POST['search'])) {
-    $word = $_POST['search'];
-    $query = "SELECT * FROM _33_book WHERE title LIKE '%$word%' OR author LIKE '%$word%' ";
-}else{
-    $query = "SELECT * FROM _33_book limit 5 ";
-}
-$result = $conn->query($query);
-if ($result->num_rows > 0) {
-    session_start();
-    if($_SESSION['usuario']['member_type'] === 'admin'){
-        imprimirLibroAdmin($result);
-    }else{
-        imprimirLibroGuest($result);
-    }
-}
 ?>

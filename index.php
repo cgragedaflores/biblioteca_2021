@@ -1,4 +1,4 @@
-<?php include 'header.php'?>
+<?php include 'header.php';?>
 <main class='uk-width-1-1@s uk-child-width-1-1@s uk-margin-remove uk-padding-small' uk-grid>
     <div class="uk-child-width-1-1@s" uk-grid>
         <div>
@@ -101,9 +101,10 @@
                                                     <div class="uk-width-auto">
                                                         <img class="uk-border-circle" width="70" height="70"
                                                             src="images/avatar.jpg">
+                                                            <h3 class="uk-card-title uk-margin-remove-bottom">Indice</h3>
                                                     </div>
                                                     <div class="uk-width-expand">
-                                                        <h3 class="uk-card-title uk-margin-remove-bottom">Indice</h3>
+                                                           
                                                         <input
                                                             class="uk-input uk-form-blank uk-form-width-medium uk-text-large"
                                                             type="text" id='time' readonly='true'>
