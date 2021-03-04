@@ -19,13 +19,13 @@ function imprimirCarritoGuest($result)
     <td><input type="number" class='uk-input' value="<?php echo $fila['cantidad']; ?>" max='99' min='1'></td>
     <td><?php echo $fila['subtotal']; ?></td>
     <td>
-            <input type="hidden" name="" value='<?php echo $fila['book_id'] ?>'>
-            <input type="hidden" name="" value='<?php echo $fila['title'] ?>'>
-            <input type="hidden" name="" value='<?php echo $fila['author'] ?>'>
-            <input type="hidden" name="" value='<?php echo $fila['user_id'] ?>'>
-            <input type="hidden" name="" value='<?php echo $fila['member_type'] ?>'>
-            <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:cart'></button>
-            <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:trash'></button>
+        <input type="hidden" name="" value='<?php echo $fila['book_id'] ?>'>
+        <input type="hidden" name="" value='<?php echo $fila['title'] ?>'>
+        <input type="hidden" name="" value='<?php echo $fila['author'] ?>'>
+        <input type="hidden" name="" value='<?php echo $fila['user_id'] ?>'>
+        <input type="hidden" name="" value='<?php echo $fila['member_type'] ?>'>
+        <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:cart'></button>
+        <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:trash'></button>
     </td>
 </tr>
 <?php
