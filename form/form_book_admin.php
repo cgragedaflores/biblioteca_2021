@@ -34,7 +34,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {
                     <button class="uk-button uk-button-default" type="button" tabindex="-1">Subir Portada</button>
                 </div>
             </fieldset>
-            <button class="uk-button uk-button-text uk-align-center">Agregar Libro</button>
+            <button class="uk-button uk-button-text uk-align-center" name='addBook'>Agregar Libro</button>
         </form>
     </div>
     <div class="uk-width-expand@s">

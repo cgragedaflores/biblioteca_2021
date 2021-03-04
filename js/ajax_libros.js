@@ -12,6 +12,7 @@ $(document).ready(function () {
         $.each(other_data, function (key, input) {
             data.append(input.name, input.value);
         });
+        console.log(other_data);
         $.ajax({
             url: getUrl()+'bd/bd_book_insert.php',
             data: { data },

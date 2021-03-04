@@ -11,7 +11,7 @@ $result = $conn->query($query);
 if ($result->num_rows > 0) {
     if(empty($_SESSION)){
         session_start();
-        imprimirLibroAdmin($result);
+        imprimirLibroGuest($result);
     }else{
         imprimirLibroAdmin($result);
     }
@@ -28,7 +28,7 @@ function imprimirLibroGuest($result)
         }
         $currentBook = $fila['book_id'];
         ?>
-<tr >
+<tr>
     <td>
         <img class="uk-preserve-width uk-border-circle" src="<?php echo $portada; ?>" width="70" alt="">
     </td>
@@ -36,11 +36,10 @@ function imprimirLibroGuest($result)
     <td><?php echo $fila['author']; ?></td>
     <td><?php echo $fila['precio']; ?></td>
     <td>
-        <form action="" id="form-book<?php echo $currentBook?>">
-            <input type="hidden" value="<?php echo $currentBook?>" id="book_id">
-            <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:cart'></button>
-            <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:file'></button>
-        </form>
+        <button class='uk-button uk-button-secondary add-book-car' type='button' uk-icon='icon:cart'
+            data-id='<?php echo $fila['book_id']?>'></button>
+        <button class='uk-button uk-button-secondary add-book-reserve' type='button' uk-icon='icon:file'
+            data-id='<?php echo $fila['book_id']?>'></button>
     </td>
 </tr>
 <?php
@@ -58,7 +57,7 @@ function imprimirLibroAdmin($result)
         $currentBook = $fila['book_id'];
         echo $portada;
         ?>
-<tr >
+<tr>
     <td>
         <img class="uk-preserve-width uk-border-circle" src="<?php echo $portada; ?>" width="70" alt="">
     </td>
@@ -66,10 +65,7 @@ function imprimirLibroAdmin($result)
     <td><?php echo $fila['author']; ?></td>
     <td><?php echo $fila['precio']; ?></td>
     <td>
-        <form action="" id="form-book<?php echo $currentBook?>">
-            <input type="hidden" value="<?php echo $currentBook?>" id="book_id">
-            <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:trash'></button>
-        </form>
+        <button class='uk-button uk-button-secondary' type='button' uk-icon='icon:trash'></button>
     </td>
 </tr>
 <?php

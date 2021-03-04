@@ -1,6 +1,6 @@
 <?php
 include('bd_connect.php');
-if (isset($_POST['submit'])) {
+if (isset($_POST['b_title'])) {
     $isbn = $_POST["b_isbn"];
     $title = $_POST["b_title"];
     $author = $_POST["b_author"];
