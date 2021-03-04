@@ -2,28 +2,39 @@
 include '../admin/header.php';
 session_start();
 if ($_SESSION['usuario']['member_type'] === 'admin') {
-?>
+    ?>
 <main class='uk-width-1-1@s uk-padding-small uk-margin-remove' uk-grid>
     <div class="uk-width-1-3@s">
-        <form class="uk-grid-small" uk-grid action="../bd/bd_book_insert.php" method="POST">
-            <div class="uk-width-1-1">
-                <input class="uk-input" type="text" name="b_title" placeholder="Titulo">
-            </div>
-            <div class="uk-width-1-1">
-                <input class="uk-input" type="text" name="b_isbn" placeholder="ISBN">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input class="uk-input" type="text" placeholder="" name="b_author" placeholder="Autor">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input class="uk-input" type="text" placeholder="" name="b_editorial" placeholder="Editorial">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input class="uk-input" type="date" placeholder="" name="b_pDate">
-            </div>
-            <div class="uk-width-1-2@s">
-                <input class="uk-input" type="number" placeholder="" name="b_Location" placeholder="Estanteria">
-            </div>
+        <form class="uk-grid-small" uk-grid  method="POST" id='add-book' enctype="multipart/form-data">
+            <fieldset class="uk-fieldset" uk-grid>
+                <legend class="uk-legend uk-text-center">Agregar Libro</legend>
+                <div class="uk-margin uk-align-center" id='preview' name='preview'>
+                    <img src="" alt="" uk-image id='front-page' name='front-page'>
+                </div>
+                <div class="uk-width-1-1 ">
+                    <input class="uk-input" type="text" name="b_title" placeholder="Titulo" id="b_title">
+                </div>
+                <div class="uk-width-1-1 uk-margin-small">
+                    <input class="uk-input" type="text" name="b_isbn" placeholder="ISBN" id="b_isbn">
+                </div>
+                <div class="uk-width-1-2@s uk-margin-small">
+                    <input class="uk-input" type="text" name="b_author" placeholder="Autor" id="b_autor">
+                </div>
+                <div class="uk-width-1-2@s uk-margin-small">
+                    <input class="uk-input" type="text" name="b_editorial" placeholder="Editorial" id="b_editorial">
+                </div>
+                <div class="uk-width-1-2@s uk-margin-small">
+                    <input class="uk-input" type="date" placeholder="" name="b_pDate" id="b_pDate">
+                </div>
+                <div class="uk-width-1-2@s uk-margin-small">
+                    <input class="uk-input" type="number" placeholder="Estanteria" name="b_Location" id="b_Location">
+                </div>
+                <div class="js-upload uk-margin-small uk-align-left" uk-form-custom>
+                    <input type="file" multiple id='book_file' name="book_file">
+                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Subir Portada</button>
+                </div>
+            </fieldset>
+            <button class="uk-button uk-button-text uk-align-center">Agregar Libro</button>
         </form>
     </div>
     <div class="uk-width-expand@s">
