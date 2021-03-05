@@ -1,7 +1,7 @@
 <?php
 include 'bd_connect.php';
-if (isset($_POST['data'])) {
-    $book_id = $_POST['data'];
+if (isset($_POST['id'])) {
+    $book_id = $_POST['id'];
     //comprobamos que el libro existe
     $querySelect = "SELECT * FROM _33_shop_car WHERE book_id = $book_id ";
     $result = $conn->query($querySelect);

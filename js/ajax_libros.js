@@ -36,7 +36,7 @@ $(document).ready(function () {
     $(document).on('click', '.delete-book-btn', function () {
         if (confirm('Desea Eliminar este item')) {
             let item = $(this)[0].parentElement.parentElement;
-            let id = $(item).attr('idLibroAdmin');
+            let id = $(item).attr('idLibro');
             $.ajax({
                 url: getUrl() + 'bd/bd_book_delete.php',
                 type: 'POST',
@@ -54,7 +54,7 @@ $(document).ready(function () {
     //AJAX UPDATE BOOK
     $(document).on('click', '.book_item', function () {
         let item = $(this)[0].parentElement.parentElement;
-        let id = $(item).attr('idLibroAdmin');
+        let id = $(item).attr('idLibro');
         $.ajax({
             url: getUrl() + 'bd/bd_book_edit.php',
             type: 'POST',
@@ -100,6 +100,7 @@ $(document).ready(function () {
             url: url,
             type: 'POST',
             success: function (response) {
+                console.log(response);
                 $('#container').html(response);
             }
         });

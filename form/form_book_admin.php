@@ -1,8 +1,7 @@
 <?php
 include '../admin/header.php';
 session_start();
-if ($_SESSION['usuario']['member_type'] === 'admin') {
-    ?>
+if ($_SESSION['usuario']['member_type'] === 'admin') {?>
 <main class='uk-width-1-1@s uk-padding-small uk-margin-remove' uk-grid>
     <div class="uk-width-1-3@s">
         <form class="uk-grid-small" uk-grid  method="POST" id='add-book-admin' enctype="multipart/form-data">
@@ -71,6 +70,8 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {
     </div>
 </main>
 <?php
+}else{
+    header('Location: ../index.php');
 }
 include '../footer.php';
 ?>

@@ -17,6 +17,11 @@
 </head>
 
 <body uk-grid>
+    <?php
+if (empty($_SESSION)) {
+    session_start();
+}
+?>
     <header class="uk-width-1-1@s">
         <nav class="uk-navbar-container uk-margin" uk-navbar>
             <div class="nav-overlay uk-navbar-left">

@@ -40,12 +40,15 @@ $(document).ready(function () {
     function addItem() {
         $(document).on('click', '.add-book-car', function (element) {
             //console.log($(this).data('id'));
-            let data = $(this).data('id');
+            let item = $(this)[0].parentElement.parentElement;
+            let id = $(item).attr('idlibro');
+            console.log(id);
             $.ajax({
                 url: getUrl() + 'bd/bd_carrito_insert.php',
                 type: 'POST',
-                data: { data },
+                data: { id },
                 success: function (response) {
+                    console.log(response);
                     fetchItems();
                 }
             });
