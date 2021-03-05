@@ -5,5 +5,6 @@
 <script src="http://localhost/biblioteca/js/ajax_libros.js"></script>
 <script src="http://localhost/biblioteca/js/time.js"></script>
 <script src="http://localhost/biblioteca/js/ajax_carrito.js"></script>
+<script src="http://localhost/biblioteca/uikit/js/uikit.js"></script>
 </body>
 </html>

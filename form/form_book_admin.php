@@ -5,7 +5,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {
     ?>
 <main class='uk-width-1-1@s uk-padding-small uk-margin-remove' uk-grid>
     <div class="uk-width-1-3@s">
-        <form class="uk-grid-small" uk-grid  method="POST" id='add-book' enctype="multipart/form-data">
+        <form class="uk-grid-small" uk-grid  method="POST" id='add-book-admin' enctype="multipart/form-data">
             <fieldset class="uk-fieldset" uk-grid>
                 <legend class="uk-legend uk-text-center">Agregar Libro</legend>
                 <div class="uk-margin uk-align-center" id='preview' name='preview'>

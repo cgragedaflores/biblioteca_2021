@@ -2,23 +2,31 @@ $(document).ready(function () {
     previewImage();
     fetchTasks();
     // AJAX INSERT LIBROS
-    $('#add-book').submit(event => {
+    $('#add-book-admin').submit(event => {
         event.preventDefault();
         let data = new FormData();
-        jQuery.each($('input[type=file]')[0].files, function (i, file) {
-            data.append('file-' + i, file);
-        });
-        let other_data = $('#add-book').serializeArray();
+        let file = $('#book_file')[0].files[0];
+        console.log(file);
+        data.append('portada', file);
+        let other_data = $('#add-book-admin').serializeArray();
         $.each(other_data, function (key, input) {
             data.append(input.name, input.value);
         });
-        console.log(other_data);
+        for (let key of data.entries()) {
+            console.log(key[0] + ' ' + key[1]);
+
+        };
         $.ajax({
-            url: getUrl()+'bd/bd_book_insert.php',
-            data: { data },
-            processData: false,
+            url: getUrl() + 'bd/bd_book_insert.php',
+            data: data,
             type: 'POST',
+            processData: false,
+            contentType: false,
+            cache:false,
             success: function (response) {
+                console.log(response);
+            },
+            fail: function(response) {
                 console.log(response);
             }
         })
@@ -49,6 +57,7 @@ $(document).ready(function () {
             }
         });
     }
+    //Reservar
     function previewImage() {
         const inputFile = document.getElementById('book_file');
         const previewImage = document.getElementById('front-page');

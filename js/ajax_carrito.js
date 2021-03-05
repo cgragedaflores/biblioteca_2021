@@ -29,10 +29,10 @@ $(document).ready(function () {
                         </tr>
                     `;
                     totalItems = totalItems + parseInt(item.subtotal);
-                
+
                 });
                 $('#container_carrito').html(template);
-                $('#TotalItems').text('Total Compra \t'+totalItems+'€');
+                $('#TotalItems').text('Total Compra \t' + totalItems + '€');
             }
         });
     }
@@ -46,10 +46,16 @@ $(document).ready(function () {
                 type: 'POST',
                 data: { data },
                 success: function (response) {
-                    console.log(response);
                     fetchItems();
                 }
             });
+            let alert = UIkit.notification({
+                message: 'Libro en el Carrito!!!!',
+                status: 'success',
+                pos: 'top-center',
+                timeout: 5000
+            });
+            $(this).append((alert));
         })
     }
     function deleteItem() {
@@ -60,10 +66,13 @@ $(document).ready(function () {
                 $.ajax({
                     url: getUrl() + 'bd/bd_carrito_delete.php',
                     type: 'POST',
-                    data: {id},
+                    data: { id },
                     success: function (response) {
                         console.log(response);
                         fetchItems();
+                    },
+                    fail: function (response) {
+                        console.log(response);
                     }
                 });
             }

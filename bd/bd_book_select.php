@@ -5,7 +5,7 @@ if (isset($_POST['search'])) {
     $word = $_POST['search'];
     $query = "SELECT * FROM _33_book WHERE title LIKE '%$word%' OR author LIKE '%$word%' ";
 }else{
-    $query = "SELECT * FROM _33_book limit 5 ";
+    $query = "SELECT * FROM _33_book ORDER BY inserted_on limit  5 ";
 }
 $result = $conn->query($query);
 if ($result->num_rows > 0) {

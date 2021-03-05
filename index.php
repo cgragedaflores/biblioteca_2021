@@ -1,5 +1,5 @@
 <?php include 'header.php';?>
-<main class='uk-width-1-1@s uk-child-width-1-1@s uk-margin-remove uk-padding-small' uk-grid>
+<main class='uk-width-1-1@s uk-child-width-1-1@s uk-margin-remove uk-padding-small' uk-grid id='main_container'>
     <div class="uk-child-width-1-1@s" uk-grid>
         <div>
             <div uk-grid>
