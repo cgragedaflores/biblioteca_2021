@@ -49,7 +49,7 @@
                                 <tbody id='container_carrito'>
                                 </tbody>
                             </table>
-                            <span>Total : </span>
+                            <span id='TotalItems' class="uk-text-lead">Total : </span>
                         </li>
                         <li class="uk-active">
                             <div class="uk-flex uk-margin uk-text-center">
