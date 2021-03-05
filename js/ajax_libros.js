@@ -1,6 +1,8 @@
 $(document).ready(function () {
+    //comprueba si se esta editando
+    let edicion = false;
     previewImage();
-    fetchTasks();
+    fetchBook();
     // AJAX INSERT LIBROS
     $('#add-book-admin').submit(event => {
         event.preventDefault();
@@ -12,26 +14,71 @@ $(document).ready(function () {
         $.each(other_data, function (key, input) {
             data.append(input.name, input.value);
         });
-        for (let key of data.entries()) {
-            console.log(key[0] + ' ' + key[1]);
-
-        };
+        let url = edicion === false ?getUrl()+'bd/bd_book_insert.php':getUrl()+'bd/bd_book_update.php';
         $.ajax({
-            url: getUrl() + 'bd/bd_book_insert.php',
+            url: url,
             data: data,
             type: 'POST',
             processData: false,
             contentType: false,
-            cache:false,
+            cache: false,
             success: function (response) {
                 console.log(response);
+                fetchBook();
+                $('#add-book-admin').trigger('reset');
             },
-            fail: function(response) {
+            fail: function (response) {
                 console.log(response);
             }
         })
-
     });
+    //AJAX DELETE LIBROS;
+    $(document).on('click', '.delete-book-btn', function () {
+        if (confirm('Desea Eliminar este item')) {
+            let item = $(this)[0].parentElement.parentElement;
+            let id = $(item).attr('idLibroAdmin');
+            $.ajax({
+                url: getUrl() + 'bd/bd_book_delete.php',
+                type: 'POST',
+                data: { id },
+                success: function (response) {
+                    console.log(response);
+                    fetchBook();
+                },
+                fail: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+    })
+    //AJAX UPDATE BOOK
+    $(document).on('click', '.book_item', function () {
+        let item = $(this)[0].parentElement.parentElement;
+        let id = $(item).attr('idLibroAdmin');
+        $.ajax({
+            url: getUrl() + 'bd/bd_book_edit.php',
+            type: 'POST',
+            data: { id },
+            success: function (response) {
+                console.log(response);
+                const book = JSON.parse(response);
+                $('#front-page').attr('src',book.portada);
+                $('#b_id').val(book.idLibro);
+                $('#b_title').val(book.titulo)
+                $('#b_isbn').val(book.isbn)
+                $('#b_autor').val(book.autor);
+                $('#b_editorial').val(book.editorial);
+                $('#b_pDate').val(book.fechaP);
+                $('#b_Location').val(book.location);
+                $('#b_precio').val(book.precio);
+                edicion = true;
+                fetchBook();
+            },
+            fail: function (response) {
+                console.log(response);
+            }
+        });
+    })
     // AJAX SELECT LIBROS
     $('#search').keyup(function () {
         let url = getUrl() + 'bd/bd_book_select.php';
@@ -47,7 +94,7 @@ $(document).ready(function () {
             })
         }
     });
-    function fetchTasks() {
+    function fetchBook() {
         let url = getUrl() + 'bd/bd_book_select.php';
         $.ajax({
             url: url,
@@ -57,7 +104,7 @@ $(document).ready(function () {
             }
         });
     }
-    //Reservar
+    //preview image
     function previewImage() {
         const inputFile = document.getElementById('book_file');
         const previewImage = document.getElementById('front-page');

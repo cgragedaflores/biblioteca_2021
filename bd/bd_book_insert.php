@@ -7,18 +7,25 @@ if (isset($_POST['b_title'])) {
     $editorial = $_POST["b_editorial"];
     $location = $_POST["b_Location"];
     $pDate = $_POST["b_pDate"];
-
+    $precio = $_POST['b_precio'];
     //GUARDAR IMAGEN
-    $tipo_imagen = $_FILES['portada']['type'];
-    $tamano_imagen = $_FILES['portada']['size'];
-    $nombre_imagen = $title;
-    $ext = pathinfo($nombre_imagen, PATHINFO_EXTENSION);
-    $nombre_imagen = $title . "." . $ext;
-    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/biblioteca/img/front_page/';
-    rename($_FILES['portada']['tmp_name'], $carpeta_destino . $nombre_imagen);
+    if (!empty($_FILES['portada'])) {
+        $tipo_imagen = $_FILES['portada']['type'];
+        $tamano_imagen = $_FILES['portada']['size'];
+        $nombre_imagen = $title;
+        $ext = pathinfo($_FILES['portada']['name'], PATHINFO_EXTENSION);
+        $nombre_imagen = $title . "." . $ext;
+        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/biblioteca/img/front_page/';
+        move_uploaded_file($_FILES['portada']['tmp_name'], $carpeta_destino . $nombre_imagen);
+        $sql_query = "INSERT INTO _33_book()
+        VALUES('0','$isbn','$title','$author','$editorial','$location','$pDate',now(),1,'$nombre_imagen','$precio')";
+    } else {
+        $sql_query = "INSERT INTO _33_book()
+        VALUES('0','$isbn','$title','$author','$editorial','$location','$pDate',now(),1,'','$precio')";
+    }
+
     //Insert user's on BDþ
-    $sql_query = "INSERT INTO _33_book()
-    VALUES('0','$isbn','$title','$author','$editorial','$location','$pDate',now(),1,'$nombre_imagen','15')";
+
     if ($conn->query($sql_query)) {
         //Success
         echo "datos insertados correctamente";
