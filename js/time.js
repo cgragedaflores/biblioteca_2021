@@ -1,6 +1,6 @@
 window.onload = () => {
-    reloj();
-    setInterval(weather(), 72000);
+    //reloj();
+    //setInterval(weather(), 72000);
 }
 function reloj() {
     momentoActual = new Date()

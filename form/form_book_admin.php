@@ -9,7 +9,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {?>
                 <input type="hidden" value="" id='b_id' name='b_id'>;
                 <legend class="uk-legend uk-text-center">Agregar Libro</legend>
                 <div class="uk-margin uk-align-center" id='preview' name='preview'>
-                    <img src="" alt="" uk-image id='front-page' name='front-page'>
+                    <img src="uk-preserve-width uk-border-circle" alt="" uk-image id='front-page' name='front-page' width="150">
                 </div>
                 <div class="uk-width-1-1 ">
                     <input class="uk-input" type="text" name="b_title" placeholder="Titulo" id="b_title" value="">

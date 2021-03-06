@@ -71,7 +71,6 @@ $(document).ready(function () {
                     type: 'POST',
                     data: { id },
                     success: function (response) {
-                        console.log(response);
                         fetchItems();
                     },
                     fail: function (response) {

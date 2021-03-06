@@ -23,7 +23,6 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             success: function (response) {
-                console.log(response);
                 fetchBook();
                 $('#add-book-admin').trigger('reset');
             },
@@ -42,7 +41,6 @@ $(document).ready(function () {
                 type: 'POST',
                 data: { id },
                 success: function (response) {
-                    console.log(response);
                     fetchBook();
                 },
                 fail: function (response) {
@@ -62,7 +60,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 const book = JSON.parse(response);
-                $('#front-page').attr('src',book.portada);
+                $('#front-page').attr('src',getUrl()+'img/'+book.portada);
                 $('#b_id').val(book.idLibro);
                 $('#b_title').val(book.titulo)
                 $('#b_isbn').val(book.isbn)
@@ -100,7 +98,6 @@ $(document).ready(function () {
             url: url,
             type: 'POST',
             success: function (response) {
-                console.log(response);
                 $('#container').html(response);
             }
         });

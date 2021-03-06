@@ -35,9 +35,7 @@
                         <a href="#">Usuarios</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="#">Buscar</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">Agregar</a></li>
+                                <li class="uk-active"><a href="http://localhost/biblioteca/form/form_user_admin.php">Buscar</a></li>
                             </ul>
                         </div>
                     </li>
