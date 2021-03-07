@@ -9,27 +9,45 @@ $(document).ready(function () {
         $.ajax({
             url: url,
             type: 'POST',
+            datatype: 'json',
             success: function (response) {
-                $('#container-user').html(response);
+                let template = '';
+                let usuarios = JSON.parse(response);
+                let imagen = '';
+                usuarios.forEach(usuarios => {
+                    if (usuarios.imagen === null || usuarios.imagen === '') {
+                        usuarios.imagen = getUrl() + 'img/user.png';
+                        imagen = usuarios.imagen;
+                    } else {
+                        imagen = getUrl() + 'img/profile_Images' + usuarios.imagen;
+                    }
+                    template += `
+                            <tr uid ='${usuarios.uid}'>
+                                <td><img class="uk-preserve-width uk-border-circle" src="${imagen}" width="70" alt=""></td>
+                                <td><a href='#' class='uk-button uk-button-text user_item'>${usuarios.nombre}</td>
+                                <td>${usuarios.email}</td>
+                                <td>${usuarios.tipoMiembro}</td>
+                                <td>${usuarios.fechaRegistro}</td>
+                                <td>
+                                    <button class='uk-button uk-button-secondary delete_user_btn' uk-icon='icon:trash'></button>
+                                </td>
+                            </tr>`;
+                });
+                $('#container-user').html(template);
             }
         });
     }
     //AJAX DELETE LIBROS;
-    $(document).on('click', '.delete-user-btn', function () {
-        console.log('click');
+    $(document).on('click', '.delete_user_btn', function () {
         if (confirm('Desea Eliminar este Usuario')) {
             let item = $(this)[0].parentElement.parentElement;
-            let id = $(item).attr('idUsuario');
+            let id = $(item).attr('uid');
             $.ajax({
                 url: getUrl() + 'bd/bd_user_delete.php',
                 type: 'POST',
                 data: { id },
                 success: function (response) {
-                    console.log(response);
                     fetchUser();
-                },
-                fail: function (response) {
-                    console.log(response);
                 }
             });
         }
@@ -54,8 +72,8 @@ $(document).ready(function () {
             cache: false,
             success: function (response) {
                 console.log(response);
-                $('#add-user-admin').trigger('reset');
                 fetchUser();
+                $('#add-user-admin').trigger('reset');
             },
             fail: function (response) {
                 console.log(response);
@@ -65,7 +83,7 @@ $(document).ready(function () {
     //ajax update User
     $(document).on('click', '.user_item', function () {
         let item = $(this)[0].parentElement.parentElement;
-        let id = $(item).attr('idUsuario');
+        let id = $(item).attr('uid');
         $.ajax({
             url: getUrl() + 'bd/bd_user_edit.php',
             type: 'POST',
@@ -73,11 +91,18 @@ $(document).ready(function () {
             data: { id },
             success: function (response) {
                 console.log(response);
-                let user = JSON.parse(response);
-                $('#user-page').attr('src', getUrl() + 'img/' + user.profile);
+                let user = response;
+                let picture = '';
+                if (user.profile === null || user.profile === '') {
+                    user.profile = getUrl() + "img/user.png"
+                    picture = user.profile;
+                } else {
+                    picture = user.profile;
+                }
+                $('#user-page').attr('src', picture);
                 $('#u_id').val(user.id_usuario);
-                $('#u_nombre').val(user.nombre)
-                $('#u_email').val(user.email)
+                $('#u_nombre').val(user.nombre);
+                $('#u_email').val(user.email);
                 $('#u_apellido').val(user.apellido);
                 $('#u_nif').val(user.dni);
                 $('#u_telefono').val(user.tel);
@@ -89,6 +114,42 @@ $(document).ready(function () {
             }
         });
     })
+    $('#search-user').keyup(function () {
+        let url = getUrl() + 'bd/bd_user_select.php';
+        if ($('#search-user').val()) {
+            let search = $('#search-user').val();
+            $.ajax({
+                url: url,
+                data: { search },
+                type: 'POST',
+                success: function (response) {
+                    let template = '';
+                    let usuarios = JSON.parse(response);
+                    let imagen = '';
+                    usuarios.forEach(usuarios => {
+                        if (usuarios.imagen === null || usuarios.imagen === '') {
+                            usuarios.imagen = getUrl() + 'img/user.png';
+                            imagen = usuarios.imagen;
+                        } else {
+                            imagen = getUrl() + 'img/profile_Images' + usuarios.imagen;
+                        }
+                        template += `
+                            <tr uid ='${usuarios.uid}'>
+                                <td><img class="uk-preserve-width uk-border-circle" src="${imagen}" width="70" alt=""></td>
+                                <td><a href='#' class='uk-button uk-button-text user_item'>${usuarios.nombre}</td>
+                                <td>${usuarios.email}</td>
+                                <td>${usuarios.tipoMiembro}</td>
+                                <td>${usuarios.fechaRegistro}</td>
+                                <td>
+                                    <button class='uk-button uk-button-secondary delete-user-btn' uk-icon='icon:trash'></button>
+                                </td>
+                            </tr>`;
+                    });
+                    $('#container-user').html(template);
+                }
+            })
+        }
+    });
     //preview image
     function previewImage() {
         const inputFile = document.getElementById('user_file');

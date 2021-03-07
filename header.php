@@ -15,17 +15,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Biblioteca Nazarick</title>
 </head>
-
-<body uk-grid>
-    <?php
-if (empty($_SESSION)) {
+<?php
     session_start();
-}
+    $_SESSION['usuario'] = array();
+    $_SESSION['usuario']['member_type'] = 'guest';
 ?>
+<body uk-grid>
     <header class="uk-width-1-1@s">
         <nav class="uk-navbar-container uk-margin" uk-navbar>
             <div class="nav-overlay uk-navbar-left">
-                <a class="uk-navbar-item uk-logo" href="#">Biblioteca Nazarick</a>
+                <a class="uk-navbar-item uk-logo" href="http://localhost/biblioteca/">Biblioteca Nazarick</a>
                 <ul class="uk-navbar-nav">
                     <li class="uk-active">
                         <input class="uk-input uk-form-blank uk-form-width-medium uk-text-large" type="text" id='time'
@@ -47,8 +46,8 @@ if (empty($_SESSION)) {
             <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
                 <div class="uk-navbar-item uk-width-expand">
                     <form class="uk-search uk-search-navbar uk-width-1-1">
-                        <input class="uk-search-input" type="search" placeholder="Search" autofocus id='search'
-                            name='search'>
+                        <input class="uk-search-input" type="search" placeholder="Search" autofocus id='search-book'
+                            name='search-book'>
                     </form>
                 </div>
                 <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade"

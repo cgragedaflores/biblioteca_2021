@@ -1,4 +1,5 @@
-<?php include 'header.php';?>
+<?php include 'header.php';
+?>
 <main class='uk-width-1-1@s uk-child-width-1-1@s uk-margin-remove uk-padding-small' uk-grid id='main_container'>
     <div class="uk-child-width-1-1@s" uk-grid>
         <div>
@@ -27,13 +28,13 @@
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody id='container'>
+                                <tbody id='container-libros'>
 
                                 </tbody>
                             </table>
                         </li>
                         <li>
-                            <table class="uk-table">
+                            <table class="uk-table" id='cart_table'>
                                 <caption>Elementos Carrito</caption>
                                 <thead>
                                     <tr>
@@ -50,6 +51,8 @@
                                 </tbody>
                             </table>
                             <span id='TotalItems' class="uk-text-lead">Total : </span>
+                            <img class='uk-preserve-width uk-border-circle uk-align-center' src="./img/carro.svg" alt=""
+                                width="400" id='void_cart' uk-img>
                         </li>
                         <li class="uk-active">
                             <div class="uk-flex uk-margin uk-text-center">
@@ -99,12 +102,11 @@
                                             <div class="uk-card-header">
                                                 <div class="uk-grid-small uk-flex-middle" uk-grid>
                                                     <div class="uk-width-auto">
-                                                        <img class="uk-border-circle" width="70" height="70"
-                                                            src="images/avatar.jpg">
-                                                            <h3 class="uk-card-title uk-margin-remove-bottom">Indice</h3>
+                                                        <img class="uk-border-circle" width="70" height="70" src="">
+                                                        <h3 class="uk-card-title uk-margin-remove-bottom">Indice</h3>
                                                     </div>
                                                     <div class="uk-width-expand">
-                                                           
+
                                                         <input
                                                             class="uk-input uk-form-blank uk-form-width-medium uk-text-large"
                                                             type="text" id='time' readonly='true'>

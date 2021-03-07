@@ -40,7 +40,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {?>
                 <div class="uk-navbar-item">
                     <form class="uk-search uk-search-navbar">
                         <span uk-search-icon></span>
-                        <input class="uk-search-input" type="search" placeholder="Search" name='search' id="search">
+                        <input class="uk-search-input" type="search" placeholder="Search" name='search-user' id="search-user">
                     </form>
                 </div>
             </div>
@@ -64,6 +64,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {?>
         </div>
     </div>
 </main>
+<script src="http://localhost/biblioteca/js/ajax_usuarios.js"></script>
 <?php
 }else{
     header('Location: ../index.php');

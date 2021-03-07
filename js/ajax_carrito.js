@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log('jquery is working');
+    console.log('jquery  cart is working');
     fetchItems();
     addItem();
     deleteItem();
@@ -11,11 +11,19 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                let totalItems = 0;
-                let items = response;
-                let template = '';
-                items.forEach(item => {
-                    template += `
+                if (response.fail === true) {
+                    $('#cart_table').hide();
+                    $('#TotalItems').hide();
+                    $('#void_cart').show();
+                } else {
+                    $('#void_cart').hide();
+                    $('#cart_table').show();
+                    $('#TotalItems').show();
+                    let totalItems = 0;
+                    let items = response;
+                    let template = '';
+                    items.forEach(item => {
+                        template += `
                         <tr idItem ='${item.idLibro}'>
                             <td>
                                 <img class="uk-preserve-width uk-border-circle" src="`+ getUrl() + `img/${item.portada}" width="70" alt="">
@@ -28,11 +36,12 @@ $(document).ready(function () {
                             <td><button class='uk-button uk-button-text delete-book-cart'>Eliminar</td>
                         </tr>
                     `;
-                    totalItems = totalItems + parseInt(item.subtotal);
+                        totalItems = totalItems + parseInt(item.subtotal);
 
-                });
-                $('#container_carrito').html(template);
-                $('#TotalItems').text('Total Compra \t' + totalItems + '€');
+                    });
+                    $('#container_carrito').html(template);
+                    $('#TotalItems').text('Total Compra \t' + totalItems + '€');
+                }
             }
         });
     }
@@ -56,7 +65,7 @@ $(document).ready(function () {
                 message: 'Libro en el Carrito!!!!',
                 status: 'success',
                 pos: 'top-center',
-                timeout: 5000
+                timeout: 500
             });
             $(this).append((alert));
         })

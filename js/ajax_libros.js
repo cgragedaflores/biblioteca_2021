@@ -1,20 +1,26 @@
 $(document).ready(function () {
     //comprueba si se esta editando
+    console.log('jquery book is working');
     let edicion = false;
     previewImage();
     fetchBook();
+    //LISTENER REDIRECIONAR EN CASO DE QUERER RESERVAR UN LIBRO
+    $(document).on('click','.add-book-reserve', () => {
+        console.log('click');
+        let url = getUrl()+'form/form_user_insert.php';
+        $(location).attr('href',url);
+    });
     // AJAX INSERT LIBROS
     $('#add-book-admin').submit(event => {
         event.preventDefault();
         let data = new FormData();
         let file = $('#book_file')[0].files[0];
-        console.log(file);
         data.append('portada', file);
         let other_data = $('#add-book-admin').serializeArray();
         $.each(other_data, function (key, input) {
             data.append(input.name, input.value);
         });
-        let url = edicion === false ?getUrl()+'bd/bd_book_insert.php':getUrl()+'bd/bd_book_update.php';
+        let url = edicion === false ? getUrl() + 'bd/bd_book_insert.php' : getUrl() + 'bd/bd_book_update.php';
         $.ajax({
             url: url,
             data: data,
@@ -58,9 +64,8 @@ $(document).ready(function () {
             type: 'POST',
             data: { id },
             success: function (response) {
-                console.log(response);
                 const book = JSON.parse(response);
-                $('#front-page').attr('src',getUrl()+'img/'+book.portada);
+                $('#front-page').attr('src', getUrl() + 'img/' + book.portada);
                 $('#b_id').val(book.idLibro);
                 $('#b_title').val(book.titulo)
                 $('#b_isbn').val(book.isbn)
@@ -78,16 +83,51 @@ $(document).ready(function () {
         });
     })
     // AJAX SELECT LIBROS
-    $('#search').keyup(function () {
+    $('#search-book').keyup(function () {
         let url = getUrl() + 'bd/bd_book_select.php';
-        if ($('#search').val()) {
-            let search = $('#search').val();
+        if ($('#search-book').val()) {
+            let search = $('#search-book').val();
             $.ajax({
                 url: url,
                 data: { search },
                 type: 'POST',
                 success: function (response) {
-                    $('#container').html(response);
+                    let template = '';
+                    let books = JSON.parse(response);
+                    let portada = '';
+                    books.forEach(book => {
+                        if (book.portada === null || book.portada === '') {
+                            book.portada = getUrl() + 'img/splatterbook.svg';
+                            portada = book.portada;
+                        } else {
+                            portada = getUrl() + 'img/front_page/' + book.portada;
+                        }
+                        if (book.tipoMiembro === 'admin') {
+                            template += `
+                            <tr idLibro ='${book.idLibro}'>
+                                <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                                <td><a href='#' class='uk-button uk-button-text book_item'>${book.titulo}</td>
+                                <td>${book.autor}</td>
+                                <td>${book.precio}</td>
+                                <td>
+                                    <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
+                                </td>
+                            </tr>`;
+                        } else {
+                            template += `
+                            <tr idLibro ='${book.idLibro}'>
+                                <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                                <td>${book.titulo}</td>
+                                <td>${book.autor}</td>
+                                <td>${book.precio}</td>
+                                <td>
+                                    <button class='uk-button uk-button-secondary add-book-reserve' uk-icon='icon:file'></button>
+                                    <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
+                                </td>
+                            </tr>`;
+                        }
+                    });
+                    $('#container-libros').html(template);
                 }
             })
         }
@@ -98,7 +138,42 @@ $(document).ready(function () {
             url: url,
             type: 'POST',
             success: function (response) {
-                $('#container').html(response);
+                let template = '';
+                let books = JSON.parse(response);
+                let portada = '';
+                books.forEach(book => {
+                    if (book.portada === null || book.portada === '') {
+                        book.portada = getUrl() + 'img/splatterbook.svg';
+                        portada = book.portada;
+                    } else {
+                        portada = getUrl() + 'img/front_page/' + book.portada;
+                    }
+                    if (book.tipoMiembro === 'admin') {
+                        template += `
+                        <tr idLibro ='${book.idLibro}'>
+                            <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                            <td><a href='#' class='uk-button uk-button-text book_item'>${book.titulo}</td>
+                            <td>${book.autor}</td>
+                            <td>${book.precio}</td>
+                            <td>
+                                <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
+                            </td>
+                        </tr>`;
+                    } else {
+                        template += `
+                        <tr idLibro ='${book.idLibro}'>
+                            <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                            <td>${book.titulo}</td>
+                            <td>${book.autor}</td>
+                            <td>${book.precio}</td>
+                            <td>
+                                <button class='uk-button uk-button-secondary add-book-reserve' uk-icon='icon:file'></button>
+                                <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
+                            </td>
+                        </tr>`;
+                    }
+                });
+                $('#container-libros').html(template);
             }
         });
     }

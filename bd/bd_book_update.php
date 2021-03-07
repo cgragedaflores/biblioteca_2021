@@ -30,7 +30,7 @@ if (isset($_POST['b_title'])) {
     }
     if ($conn->query($sql_query)) {
         //Success
-        echo "datos insertados correctamente";
+        echo "datos actualizados correctamente";
     } else {
         //Failed
         echo "query error" . mysqli_error($conn);
