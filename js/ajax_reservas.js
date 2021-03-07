@@ -68,6 +68,7 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             success: function (response) {
+                console.log(response);
                 fetchReserva();
                 $('#add-reseve-admin').trigger('reset');
             }
@@ -95,6 +96,36 @@ $(document).ready(function () {
                 console.log(response);
             }
         });
+    });
+    $('#search-reserve').keyup(function () {
+        let url = getUrl() + 'bd/bd_reserve_select.php';
+        if ($('#search-reserve').val()) {
+            let search = $('#search-reserve').val();
+            $.ajax({
+                url: url,
+                data: { search },
+                type: 'POST',
+                datatype:'json',
+                success: function (response) {
+                    let template = '';
+                    response.forEach(item =>{
+                        template += `
+                        <tr idReserva ='${item.idReserva}'>
+                            <td><a class="uk-button uk-button-text reserve_item">${item.emailUsuario}</a></td>
+                            <td>${item.tituloLibro}</td>
+                            <td>${item.fechaInicio}</td>
+                            <td>${item.fechaFin}</td>
+                            <td>${item.fechaReal}</td>
+                            <td>
+                                <button class='uk-button uk-button-text delete-reserve'>Eliminar</button>
+                            </td>
+                        </tr>
+                    `;
+                    });
+                    $('#container-reserva').html(template);
+                }
+            })
+        }
     });
     function getUrl() {
         return "http://localhost/biblioteca/"

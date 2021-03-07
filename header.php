@@ -20,6 +20,7 @@
     $_SESSION['usuario'] = array();
     $_SESSION['usuario']['member_type'] = 'guest';
 ?>
+
 <body uk-grid>
     <header class="uk-width-1-1@s">
         <nav class="uk-navbar-container uk-margin" uk-navbar>

@@ -19,7 +19,7 @@ $(document).ready(function () {
                         usuarios.imagen = getUrl() + 'img/user.png';
                         imagen = usuarios.imagen;
                     } else {
-                        imagen = getUrl() + 'img/profile_Images' + usuarios.imagen;
+                        imagen = getUrl() + 'img/profile_img/' + usuarios.imagen;
                     }
                     template += `
                             <tr uid ='${usuarios.uid}'>
@@ -97,7 +97,7 @@ $(document).ready(function () {
                     user.profile = getUrl() + "img/user.png"
                     picture = user.profile;
                 } else {
-                    picture = user.profile;
+                    picture = getUrl()+"img/profile_img/"+user.profile;
                 }
                 $('#user-page').attr('src', picture);
                 $('#u_id').val(user.id_usuario);

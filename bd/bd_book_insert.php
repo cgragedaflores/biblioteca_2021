@@ -23,9 +23,7 @@ if (isset($_POST['b_title'])) {
         $sql_query = "INSERT INTO _33_book()
         VALUES('0','$isbn','$title','$author','$editorial','$location','$pDate',now(),1,'','$precio')";
     }
-
     //Insert user's on BDþ
-
     if ($conn->query($sql_query)) {
         //Success
         echo "datos insertados correctamente";

@@ -7,8 +7,8 @@ if(isset($_POST['r_uid'])){
     $startDate = $_POST['r_devolucion'];
     $finalDate = $_POST['r_devuelto'];
     $realDate = $_POST['r_rdevolucion'];
-    $query = "UPDATE _33_reservations SET partner_id = '$uid', book_id = '$bid', inital_date = '$startDate',
-    return_date = '$finalDate', real_return_date = '$realDate', reserved_on = now() ";
+    $query = "UPDATE _33_reservations SET inital_date = '$startDate', book_id = '$bid',
+    return_date = '$finalDate', real_return_date = '$realDate', reserved_on = now() where partner_id = '$uid' ";
     $result = $conn -> query($query);
     if($result)$data = array('success' => 'update complete','data' => $_POST);
     else $data = array('fail' => $conn -> error,'data' => $_POST);
