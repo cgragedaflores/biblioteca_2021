@@ -5,5 +5,10 @@
 <script src="http://localhost/biblioteca/js/ajax_carrito.js"></script>
 <script src="http://localhost/biblioteca/js/ajax_libros.js"></script>
 <script src="http://localhost/biblioteca/uikit/js/uikit.js"></script>
+
+<!-- <script src="https://remotehost.es/student33/dwes/js/time.js"></script>
+<script src="https://remotehost.es/student33/dwes/js/ajax_carrito.js"></script>
+<script src="https://remotehost.es/student33/dwes/js/ajax_libros.js"></script>
+<script src="https://remotehost.es/student33/dwes/uikit/js/uikit.js"></script> -->
 </body>
 </html>

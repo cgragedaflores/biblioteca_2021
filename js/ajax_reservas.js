@@ -59,7 +59,6 @@ $(document).ready(function () {
             data.append(input.name, input.value);
         });
         let url = edicion === false ? getUrl() + 'bd/bd_reserve_insert.php' : getUrl() + 'bd/bd_reserve_update.php';
-        console.log(url);
         $.ajax({
             url: url,
             type: 'POST',
@@ -84,19 +83,21 @@ $(document).ready(function () {
             data: { id },
             success: function (response) {
                 const reserve = JSON.parse(response);
-                console.log(reserve);
+                $('#r_id').val(reserve.idReserva);
                 $('#r_uid').val(reserve.idUsuario);
                 $('#r_bid').val(reserve.idLibro)
                 $('#r_rdevolucion').val(reserve.fechaReal)
                 $('#r_devolucion').val(reserve.fechaInicio);
                 $('#r_devuelto').val(reserve.fechaFin);
                 edicion = true;
+                fetchReserva();
             },
             fail: function (response) {
                 console.log(response);
             }
         });
     });
+    //UPDATE RESERVA
     $('#search-reserve').keyup(function () {
         let url = getUrl() + 'bd/bd_reserve_select.php';
         if ($('#search-reserve').val()) {
@@ -130,4 +131,7 @@ $(document).ready(function () {
     function getUrl() {
         return "http://localhost/biblioteca/"
     }
+    // function getUrl() {
+    //     return "https://remotehost.es/student33/dwes/"
+    // }
 })

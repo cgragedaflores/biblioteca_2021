@@ -32,13 +32,19 @@ function weather() {
             let temp = response[0].Temperature.Metric.Value;
             let icon = response[0].WeatherIcon;
             if (document.getElementById('icon') === null) {
-                document.getElementById('icon-admin').setAttribute('src', '../img/weather/' + icon + "-s.png");
+                document.getElementById('icon-admin').setAttribute('src', getUrl()+'/img/weather/' + icon + "-s.png");
                 document.getElementById('temp-admin').innerHTML = temp + "&#176;C";
                 document.getElementById('temp-text').innerText = response[0].WeatherText;
             } else {
-                document.getElementById('icon').setAttribute('src', 'img/weather/' + icon + "-s.png");
+                document.getElementById('icon').setAttribute('src', getUrl()+'img/weather/' + icon + "-s.png");
                 document.getElementById('temp').value = temp + "C";
             }
         }
     });
 }
+function getUrl() {
+    return 'http://localhost/biblioteca/'
+}
+// function getUrl() {
+//     return 'https://remotehost.es/student33/dwes/'
+// }

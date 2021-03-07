@@ -112,8 +112,12 @@ $(document).ready(function () {
             }
         })
     }
+    //uncomment for localhost
     function getUrl() {
         return "http://localhost/biblioteca/"
     }
+    // function getUrl() {
+    //     return "https://remotehost.es/student33/dwes/"
+    // }
 
 });

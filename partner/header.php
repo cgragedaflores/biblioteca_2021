@@ -13,12 +13,10 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
     <!-- JQUERY CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Biblioteca Nazarick</title>
+    <title>Biblioteca Nazarick Partner</title>
 </head>
 <?php
     session_start();
-    $_SESSION['usuario'] = array();
-    $_SESSION['usuario']['member_type'] = 'guest';
 ?>
 
 <body uk-grid>
@@ -41,20 +39,5 @@
                     </li>
                 </ul>
             </div>
-            <div class="nav-overlay uk-navbar-right">
-                <a class="uk-navbar-toggle" uk-search-icon
-                    uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
-            </div>
-            <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
-                <div class="uk-navbar-item uk-width-expand">
-                    <form class="uk-search uk-search-navbar uk-width-1-1">
-                        <input class="uk-search-input" type="search" placeholder="Search" autofocus id='search-book'
-                            name='search-book'>
-                    </form>
-                </div>
-                <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade"
-                    href="#"></a>
-            </div>
-
         </nav>
     </header>

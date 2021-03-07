@@ -5,10 +5,10 @@ $(document).ready(function () {
     previewImage();
     fetchBook();
     //LISTENER REDIRECIONAR EN CASO DE QUERER RESERVAR UN LIBRO
-    $(document).on('click','.add-book-reserve', () => {
+    $(document).on('click', '.add-book-reserve', () => {
         console.log('click');
-        let url = getUrl()+'form/form_user_insert.php';
-        $(location).attr('href',url);
+        let url = getUrl() + 'form/form_user_insert.php';
+        $(location).attr('href', url);
     });
     // AJAX INSERT LIBROS
     $('#add-book-admin').submit(event => {
@@ -37,24 +37,7 @@ $(document).ready(function () {
             }
         })
     });
-    //AJAX DELETE LIBROS;
-    $(document).on('click', '.delete-book-btn', function () {
-        if (confirm('Desea Eliminar este item')) {
-            let item = $(this)[0].parentElement.parentElement;
-            let id = $(item).attr('idLibro');
-            $.ajax({
-                url: getUrl() + 'bd/bd_book_delete.php',
-                type: 'POST',
-                data: { id },
-                success: function (response) {
-                    fetchBook();
-                },
-                fail: function (response) {
-                    console.log(response);
-                }
-            });
-        }
-    })
+
     //AJAX UPDATE BOOK
     $(document).on('click', '.book_item', function () {
         let item = $(this)[0].parentElement.parentElement;
@@ -82,8 +65,8 @@ $(document).ready(function () {
             }
         });
     })
-    // AJAX SELECT LIBROS
     $('#search-book').keyup(function () {
+        let dom = $(this);
         let url = getUrl() + 'bd/bd_book_select.php';
         if ($('#search-book').val()) {
             let search = $('#search-book').val();
@@ -91,19 +74,23 @@ $(document).ready(function () {
                 url: url,
                 data: { search },
                 type: 'POST',
+                datatype: 'json',
                 success: function (response) {
-                    let template = '';
-                    let books = JSON.parse(response);
                     let portada = '';
-                    books.forEach(book => {
-                        if (book.portada === null || book.portada === '') {
-                            book.portada = getUrl() + 'img/splatterbook.svg';
-                            portada = book.portada;
-                        } else {
-                            portada = getUrl() + 'img/front_page/' + book.portada;
-                        }
-                        if (book.tipoMiembro === 'admin') {
-                            template += `
+                    let template = '';
+                    if (response.fail === true) {
+                        crearAlert('No se encontraron resultados',dom);
+                    } else {
+                        let books = response;
+                        books.forEach(book => {
+                            if (book.portada === null || book.portada === '') {
+                                book.portada = getUrl() + 'img/splatterbook.svg';
+                                portada = book.portada;
+                            } else {
+                                portada = getUrl() + 'img/front_page/' + book.portada;
+                            }
+                            if (book.tipoMiembro === 'admin') {
+                                template += `
                             <tr idLibro ='${book.idLibro}'>
                                 <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
                                 <td><a href='#' class='uk-button uk-button-text book_item'>${book.titulo}</td>
@@ -113,8 +100,8 @@ $(document).ready(function () {
                                     <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
                                 </td>
                             </tr>`;
-                        } else {
-                            template += `
+                            } else if(book.tipoMiembro === 'partner' || book.tipoMiembro === 'guest'){
+                                template += `
                             <tr idLibro ='${book.idLibro}'>
                                 <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
                                 <td>${book.titulo}</td>
@@ -125,31 +112,37 @@ $(document).ready(function () {
                                     <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                                 </td>
                             </tr>`;
-                        }
-                    });
+                            }
+                        });
+                    }
                     $('#container-libros').html(template);
                 }
             })
         }
     });
     function fetchBook() {
+        let dom = $(this);
         let url = getUrl() + 'bd/bd_book_select.php';
         $.ajax({
             url: url,
             type: 'POST',
+            datatype: 'json',
             success: function (response) {
-                let template = '';
-                let books = JSON.parse(response);
-                let portada = '';
-                books.forEach(book => {
-                    if (book.portada === null || book.portada === '') {
-                        book.portada = getUrl() + 'img/splatterbook.svg';
-                        portada = book.portada;
-                    } else {
-                        portada = getUrl() + 'img/front_page/' + book.portada;
-                    }
-                    if (book.tipoMiembro === 'admin') {
-                        template += `
+                if (response.fail === true) {
+                    crearAlert('No se encontraron resultados',dom);
+                } else {
+                    let template = '';
+                    let books = response;
+                    let portada = '';
+                    books.forEach(book => {
+                        if (book.portada === null || book.portada === '') {
+                            book.portada = getUrl() + 'img/splatterbook.svg';
+                            portada = book.portada;
+                        } else {
+                            portada = getUrl() + 'img/front_page/' + book.portada;
+                        }
+                        if (book.tipoMiembro === 'admin') {
+                            template += `
                         <tr idLibro ='${book.idLibro}'>
                             <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
                             <td><a href='#' class='uk-button uk-button-text book_item'>${book.titulo}</td>
@@ -159,8 +152,8 @@ $(document).ready(function () {
                                 <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
                             </td>
                         </tr>`;
-                    } else {
-                        template += `
+                        } else {
+                            template += `
                         <tr idLibro ='${book.idLibro}'>
                             <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
                             <td>${book.titulo}</td>
@@ -171,12 +164,32 @@ $(document).ready(function () {
                                 <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                             </td>
                         </tr>`;
-                    }
-                });
-                $('#container-libros').html(template);
+                        }
+                    });
+                    $('#container-libros').html(template);
+                }
             }
         });
     }
+    //AJAX DELETE LIBROS;
+    $(document).on('click', '.delete-book', function () {
+        console.log('clik');
+        if (confirm('Desea Eliminar este item')) {
+            let item = $(this)[0].parentElement.parentElement;
+            let id = $(item).attr('idLibro');
+            $.ajax({
+                url: getUrl() + 'bd/bd_book_delete.php',
+                type: 'POST',
+                data: { id },
+                success: function (response) {
+                    fetchBook();
+                },
+                fail: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+    })
     //preview image
     function previewImage() {
         const inputFile = document.getElementById('book_file');
@@ -198,5 +211,17 @@ $(document).ready(function () {
     }
     function getUrl() {
         return "http://localhost/biblioteca/"
+    }
+    // function getUrl() {
+    //     return "https://remotehost.es/student33/dwes/"
+    // }
+    function crearAlert(messege,context) {
+        let alert = UIkit.notification({
+            message: messege,
+            status: 'success',
+            pos: 'top-center',
+            timeout: 1000
+        });
+        $(context).append(alert);
     }
 });
