@@ -40,6 +40,7 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                                 </div>
                             </div>
                             <div class="uk-card-body">
+                                <input type="hidden" value="<?php echo $_SESSION['usuario']['user_id'];?>" id="user">
                                 <h3 class="uk-text-meta uk-text-uppercase uk-margin-remove-bottom uk-margin-remove-top">
                                     Miembro desde :
                                     <?php echo date_format($date, 'l jS F Y') ?></h3>
@@ -49,6 +50,8 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                                 <h3 class="uk-text-meta uk-text-uppercase uk-margin-remove-bottom uk-margin-remove-top">
                                     Tipo de Miembro:
                                     <?php echo $_SESSION['usuario']['member_type'] ?></h3>
+                                <input type="hidden" value="<?php echo $_SESSION['usuario']['user_id']; ?>"
+                                    id="user_id">
                             </div>
                             <div class="uk-card-footer">
                                 <form action="">
@@ -91,8 +94,44 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                         </div>
                     </div>
                 </div>
+                <div id="modal-example" uk-modal class="uk-margin-remove">
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <h2 class="uk-modal-title">Reservar Libro</h2>
+                        <form action="" id='add-reserve-partner' uk-grid>
+                            <div class="uk-margin-small uk-width-1-2@">
+                                <label for="r_devolucion" class="uk-label">Fecha inicio</label>
+                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d');?>"
+                                    name="r_devolucion" id="r_devolucion">
+                            </div>
+                            <div class="uk-margin-small uk-width-1-2@">
+                                <label for="r_devuelto" class="uk-label">Fecha Devolucion</label>
+                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d');?>"
+                                    name="r_devuelto" id="r_devuelto">
+                            </div>
+                        </form>
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                            <button class="uk-button uk-button-primary addReserve" type="button">Reservar</button>
+                        </p>
+                    </div>
+                </div>
             </li>
-            <li>Reservas</li>
+            <li>
+            <table class="uk-table">
+                <caption>Resultados Busqueda</caption>
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Libro</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Fecha Devolucion</th>
+                    </tr>
+                </thead>
+                <tbody id='container-reserva'>
+                </tbody>
+            </table>
+            </li>
             <li>Carrito</li>
             <li>Pedidos</li>
         </ul>

@@ -4,12 +4,6 @@ $(document).ready(function () {
     let edicion = false;
     previewImage();
     fetchBook();
-    //LISTENER REDIRECIONAR EN CASO DE QUERER RESERVAR UN LIBRO
-    $(document).on('click', '.add-book-reserve', () => {
-        console.log('click');
-        let url = getUrl() + 'form/form_user_insert.php';
-        $(location).attr('href', url);
-    });
     // AJAX INSERT LIBROS
     $('#add-book-admin').submit(event => {
         event.preventDefault();
@@ -108,7 +102,7 @@ $(document).ready(function () {
                                 <td>${book.autor}</td>
                                 <td>${book.precio}</td>
                                 <td>
-                                    <button class='uk-button uk-button-secondary add-book-reserve' uk-icon='icon:file'></button>
+                                    <button class='uk-button uk-button-secondary reserve_btn' uk-icon='icon:file' uk-toggle="target: #modal-example"></button>
                                     <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                                 </td>
                             </tr>`;
@@ -160,7 +154,7 @@ $(document).ready(function () {
                             <td>${book.autor}</td>
                             <td>${book.precio}</td>
                             <td>
-                                <button class='uk-button uk-button-secondary add-book-reserve' uk-icon='icon:file'></button>
+                                <button class='uk-button uk-button-secondary reserve_btn' uk-icon='icon:file' uk-toggle="target: #modal-example"></button>
                                 <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                             </td>
                         </tr>`;

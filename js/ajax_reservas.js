@@ -4,15 +4,31 @@ $(document).ready(function () {
     fetchReserva();
     deleteItem();
     function fetchReserva() {
+        let uid = $('#user').val();
         $.ajax({
             url: getUrl() + 'bd/bd_reserve_select.php',
             type: 'POST',
+            data: { uid },
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 let items = response;
                 let template = '';
-                items.forEach(item => {
-                    template += `
+                if (items[0].memberType === 'partner') {
+                    items.forEach(item => {
+                        template += `
+                            <tr idReserva ='${item.idReserva}'>
+                                <td>${item.emailUsuario}</td>
+                                <td>${item.tituloLibro}</td>
+                                <td>${item.fechaInicio}</td>
+                                <td>${item.fechaFin}</td>
+                                <td>${item.fechaReal}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    items.forEach(item => {
+                        template += `
                         <tr idReserva ='${item.idReserva}'>
                             <td><a class="uk-button uk-button-text reserve_item">${item.emailUsuario}</a></td>
                             <td>${item.tituloLibro}</td>
@@ -24,7 +40,8 @@ $(document).ready(function () {
                             </td>
                         </tr>
                     `;
-                });
+                    });
+                }
                 $('#container-reserva').html(template);
             },
             fail: function (response) {
@@ -106,10 +123,10 @@ $(document).ready(function () {
                 url: url,
                 data: { search },
                 type: 'POST',
-                datatype:'json',
+                datatype: 'json',
                 success: function (response) {
                     let template = '';
-                    response.forEach(item =>{
+                    response.forEach(item => {
                         template += `
                         <tr idReserva ='${item.idReserva}'>
                             <td><a class="uk-button uk-button-text reserve_item">${item.emailUsuario}</a></td>
@@ -128,6 +145,35 @@ $(document).ready(function () {
             })
         }
     });
+    $(document).on('click', '.reserve_btn', function () {
+        let item = $(this)[0].parentElement.parentElement;
+        let id = $(item).attr('idLibro');
+        $(document).on('click', '.addReserve', function () {
+            let data = new FormData();
+            let uid = $('#user').val();
+            data.append('r_uid', uid);
+            data.append('r_bid', id);
+            data.append('r_rdevolucion', null);
+            let other_data = $('#add-reserve-partner').serializeArray();
+            $.each(other_data, function (key, input) {
+                data.append(input.name, input.value);
+            });
+            $.ajax({
+                url: getUrl() + 'bd/bd_reserve_insert.php',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    console.log(response);
+                },
+                fail: function (response) {
+                    console.log(response);
+                }
+            });
+        });
+    })
     function getUrl() {
         return "http://localhost/biblioteca/"
     }

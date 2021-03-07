@@ -62,7 +62,7 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {?>
         </div>
     </div>
 </main>
-<script src="http://localhost/biblioteca/js/ajax_reservas.js"></script>
+
 <?php
 }else{
     header('Location: ../index.php');

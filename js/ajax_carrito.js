@@ -6,9 +6,11 @@ $(document).ready(function () {
     updateItem();
     //encargado de listar los elementos
     function fetchItems() {
+        let user_id = $('#user_id').val();
         $.ajax({
             url: getUrl() + 'bd/bd_carrito_select.php',
             type: 'POST',
+            data: user_id,
             dataType: 'json',
             success: function (response) {
                 if (response.fail === true) {
@@ -49,13 +51,13 @@ $(document).ready(function () {
     function addItem() {
         $(document).on('click', '.add-book-car', function (element) {
             //console.log($(this).data('id'));
+            let user_id = $('#user_id').val();
             let item = $(this)[0].parentElement.parentElement;
             let id = $(item).attr('idlibro');
-            console.log(id);
             $.ajax({
                 url: getUrl() + 'bd/bd_carrito_insert.php',
                 type: 'POST',
-                data: { id },
+                data: {id,user_id},
                 success: function (response) {
                     console.log(response);
                     fetchItems();
