@@ -73,7 +73,7 @@ $(document).ready(function () {
                     let portada = '';
                     let template = '';
                     if (response.fail === true) {
-                        crearAlert('No se encontraron resultados',dom);
+                        crearAlert('No se encontraron resultados', dom);
                     } else {
                         let books = response;
                         books.forEach(book => {
@@ -94,7 +94,7 @@ $(document).ready(function () {
                                     <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
                                 </td>
                             </tr>`;
-                            } else if(book.tipoMiembro === 'partner' || book.tipoMiembro === 'guest'){
+                            } else if (book.tipoMiembro === 'partner') {
                                 template += `
                             <tr idLibro ='${book.idLibro}'>
                                 <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
@@ -103,6 +103,18 @@ $(document).ready(function () {
                                 <td>${book.precio}</td>
                                 <td>
                                     <button class='uk-button uk-button-secondary reserve_btn' uk-icon='icon:file' uk-toggle="target: #modal-example"></button>
+                                    <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
+                                </td>
+                            </tr>`;
+                            } else if (book.tipoMiembro === 'guest') {
+                                template += `
+                            <tr idLibro ='${book.idLibro}'>
+                                <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                                <td>${book.titulo}</td>
+                                <td>${book.autor}</td>
+                                <td>${book.precio}</td>
+                                <td>
+                                    <button class='uk-button uk-button-secondary reserve_btn_guest'></button>
                                     <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                                 </td>
                             </tr>`;
@@ -122,12 +134,12 @@ $(document).ready(function () {
             type: 'POST',
             datatype: 'json',
             success: function (response) {
+                let portada = '';
+                let template = '';
                 if (response.fail === true) {
-                    crearAlert('No se encontraron resultados',dom);
+                    crearAlert('No se encontraron resultados', dom);
                 } else {
-                    let template = '';
                     let books = response;
-                    let portada = '';
                     books.forEach(book => {
                         if (book.portada === null || book.portada === '') {
                             book.portada = getUrl() + 'img/splatterbook.svg';
@@ -146,7 +158,7 @@ $(document).ready(function () {
                                 <button class='uk-button uk-button-secondary delete-book' uk-icon='icon:trash'></button>
                             </td>
                         </tr>`;
-                        } else {
+                        } else if (book.tipoMiembro === 'partner') {
                             template += `
                         <tr idLibro ='${book.idLibro}'>
                             <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
@@ -158,16 +170,27 @@ $(document).ready(function () {
                                 <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
                             </td>
                         </tr>`;
+                        } else if (book.tipoMiembro === 'guest') {
+                            template += `
+                        <tr idLibro ='${book.idLibro}'>
+                            <td><img class="uk-preserve-width uk-border-circle" src="${portada}" width="70" alt=""></td>
+                            <td>${book.titulo}</td>
+                            <td>${book.autor}</td>
+                            <td>${book.precio}</td>
+                            <td>
+                                <button class='uk-button uk-button-secondary reserve_btn_guest' uk-icon='icon:file'></button>
+                                <button class='uk-button uk-button-secondary add-book-car' uk-icon='icon:cart'></button>
+                            </td>
+                        </tr>`;
                         }
                     });
-                    $('#container-libros').html(template);
                 }
+                $('#container-libros').html(template);
             }
         });
     }
     //AJAX DELETE LIBROS;
     $(document).on('click', '.delete-book', function () {
-        console.log('clik');
         if (confirm('Desea Eliminar este item')) {
             let item = $(this)[0].parentElement.parentElement;
             let id = $(item).attr('idLibro');
@@ -209,7 +232,7 @@ $(document).ready(function () {
     // function getUrl() {
     //     return "https://remotehost.es/student33/dwes/"
     // }
-    function crearAlert(messege,context) {
+    function crearAlert(messege, context) {
         let alert = UIkit.notification({
             message: messege,
             status: 'success',

@@ -9,7 +9,7 @@ if (isset($profileImage)) {
 //trata fecha
 $date = date_create($_SESSION['usuario']['joined_on']);
 ?>
-<main class='uk-width-1-1 uk-padding-small uk-margin-medium-left' uk-grid>
+<main class='uk-width-1-1 uk-padding-remove uk-margin-small-left' uk-grid>
     <div class="uk-width-auto@m uk-margin-small">
         <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
             <li><a href="#" uk-icon='icon: home; ratio:1.5;'></a></li>
@@ -117,22 +117,42 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                 </div>
             </li>
             <li>
-            <table class="uk-table">
-                <caption>Resultados Busqueda</caption>
-                <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Libro</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Fecha Devolucion</th>
-                    </tr>
-                </thead>
-                <tbody id='container-reserva'>
-                </tbody>
-            </table>
+                <table class="uk-table">
+                    <caption>Resultados Busqueda</caption>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Libro</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Fecha Devolucion</th>
+                        </tr>
+                    </thead>
+                    <tbody id='container-reserva'>
+                    </tbody>
+                </table>
             </li>
-            <li>Carrito</li>
+            <li>
+                <table class="uk-table" id='cart_table'>
+                    <caption>Elementos Carrito</caption>
+                    <thead>
+                        <tr>
+                            <th>Portada</th>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody id='container_carrito'>
+                    </tbody>
+                </table>
+                <span id='TotalItems' class="uk-text-lead">Total : </span>
+                <img class='uk-preserve-width uk-border-circle uk-align-center' src="http://localhost/biblioteca/img/carro.svg" alt="" width="400"
+                    id='void_cart' uk-img>
+            </li>
             <li>Pedidos</li>
         </ul>
 </main>

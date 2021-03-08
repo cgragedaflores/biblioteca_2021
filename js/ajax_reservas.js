@@ -174,6 +174,19 @@ $(document).ready(function () {
             });
         });
     })
+    $(document).on('click','.reserve_btn_guest',function(){
+        let context = this;
+        crearAlert('Registrate primero <a href="'+getUrl()+'form/form_user_insert.php'+'">Aqui</a>',context);
+    });
+    function crearAlert(messege, context) {
+        let alert = UIkit.notification({
+            message: messege,
+            status: 'success',
+            pos: 'top-center',
+            timeout: 1000
+        });
+        $(context).append(alert);
+    }
     function getUrl() {
         return "http://localhost/biblioteca/"
     }
