@@ -134,6 +134,7 @@ $(document).ready(function () {
             type: 'POST',
             datatype: 'json',
             success: function (response) {
+                console.log(response);
                 let portada = '';
                 let template = '';
                 if (response.fail === true) {
@@ -226,12 +227,12 @@ $(document).ready(function () {
             });
         }
     }
-    function getUrl() {
-        return "http://localhost/biblioteca/"
-    }
     // function getUrl() {
-    //     return "https://remotehost.es/student33/dwes/"
+    //     return "http://localhost/biblioteca/"
     // }
+    function getUrl() {
+        return "https://remotehost.es/student33/dwes/"
+    }
     function crearAlert(messege, context) {
         let alert = UIkit.notification({
             message: messege,

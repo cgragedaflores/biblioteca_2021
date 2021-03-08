@@ -1,6 +1,6 @@
 window.onload = () => {
-    //reloj();
-    //setInterval(weather(), 72000);
+    reloj();
+    setInterval(weather(), 72000);
 }
 function reloj() {
     momentoActual = new Date()
@@ -42,9 +42,9 @@ function weather() {
         }
     });
 }
-function getUrl() {
-    return 'http://localhost/biblioteca/'
-}
 // function getUrl() {
-//     return 'https://remotehost.es/student33/dwes/'
+//     return 'http://localhost/biblioteca/'
 // }
+function getUrl() {
+    return 'https://remotehost.es/student33/dwes/'
+}

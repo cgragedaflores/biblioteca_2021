@@ -1,10 +1,10 @@
 <?php include 'header.php'?>
 <?php
-$profileImage = "http://localhost/biblioteca/img/profile_Images" . $_SESSION['usuario']['picture'];
-// $profileImage = "https://remotehost.es/student33/dwes/img/profile_img/".$_SESSION['usuario']['picture'];
+// $profileImage = "http://localhost/biblioteca/img/profile_Images" . $_SESSION['usuario']['picture'];
+$profileImage = "https://remotehost.es/student33/dwes/img/profile_img/".$_SESSION['usuario']['picture'];
 if (isset($profileImage)) {
-    $profileImage = "http://localhost/biblioteca/img/user.png";
-    // $profileImage = "https://remotehost.es/student33/dwes/img/user.png";
+    // $profileImage = "http://localhost/biblioteca/img/user.png";
+    $profileImage = "https://remotehost.es/student33/dwes/img/user.png";
 }
 //trata fecha
 $date = date_create($_SESSION['usuario']['joined_on']);
@@ -40,7 +40,7 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                                 </div>
                             </div>
                             <div class="uk-card-body">
-                                <input type="hidden" value="<?php echo $_SESSION['usuario']['user_id'];?>" id="user">
+                                <input type="hidden" value="<?php echo $_SESSION['usuario']['user_id']; ?>" id="user">
                                 <h3 class="uk-text-meta uk-text-uppercase uk-margin-remove-bottom uk-margin-remove-top">
                                     Miembro desde :
                                     <?php echo date_format($date, 'l jS F Y') ?></h3>
@@ -58,9 +58,10 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                                     <button class="uk-button uk-button-text" type="button" name="editar">Editar
                                         Perfil</button>
                                 </form>
+                                <!-- <a class="uk-button uk-button-text"
+                                    href="http://localhost/biblioteca/bd/bd_logout.php">Cerrar sesion</a> -->
                                 <a class="uk-button uk-button-text"
-                                    href="http://localhost/biblioteca/bd/bd_logout.php">Cerrar sesion</a>
-                                <!-- <a class="uk-button uk-button-text" href="https://remotehost.es/student33/dwes/bd/bd_logout.php">Cerrar sesion</a> -->
+                                    href="https://remotehost.es/student33/dwes/bd/bd_logout.php">Cerrar sesion</a>
                             </div>
                         </div>
                     </div>
@@ -96,16 +97,17 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                 </div>
                 <div id="modal-example" uk-modal class="uk-margin-remove">
                     <div class="uk-modal-dialog uk-modal-body">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
                         <h2 class="uk-modal-title">Reservar Libro</h2>
                         <form action="" id='add-reserve-partner' uk-grid>
                             <div class="uk-margin-small uk-width-1-2@">
                                 <label for="r_devolucion" class="uk-label">Fecha inicio</label>
-                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d');?>"
+                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d'); ?>"
                                     name="r_devolucion" id="r_devolucion">
                             </div>
                             <div class="uk-margin-small uk-width-1-2@">
                                 <label for="r_devuelto" class="uk-label">Fecha Devolucion</label>
-                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d');?>"
+                                <input type="date" class="uk-input" value="<?php echo date('Y-m-d'); ?>"
                                     name="r_devuelto" id="r_devuelto">
                             </div>
                         </form>
@@ -150,8 +152,10 @@ $date = date_create($_SESSION['usuario']['joined_on']);
                     </tbody>
                 </table>
                 <span id='TotalItems' class="uk-text-lead">Total : </span>
-                <img class='uk-preserve-width uk-border-circle uk-align-center' src="http://localhost/biblioteca/img/carro.svg" alt="" width="400"
-                    id='void_cart' uk-img>
+                <!-- <img class='uk-preserve-width uk-border-circle uk-align-center'
+                    src="http://localhost/biblioteca/img/carro.svg" alt="" width="400" id='void_cart' uk-img> -->
+                <img class='uk-preserve-width uk-border-circle uk-align-center'
+                    src="https://remotehost.es/student33/dwes/img/carro.svg" alt="" width="400" id='void_cart' uk-img>
             </li>
             <li>Pedidos</li>
         </ul>

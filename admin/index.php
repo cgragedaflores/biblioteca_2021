@@ -30,11 +30,11 @@
            <!-- CARTA USUARIO -->
     <div class="uk-width-expand@s">
         <?php
-            $profileImage = "http://localhost/biblioteca/img/profile_Images".$_SESSION['usuario']['picture'];
-            // $profileImage = "https://remotehost.es/student33/dwes/img/profile_img/".$_SESSION['usuario']['picture'];
+            // $profileImage = "http://localhost/biblioteca/img/profile_Images".$_SESSION['usuario']['picture'];
+            $profileImage = "https://remotehost.es/student33/dwes/img/profile_img/".$_SESSION['usuario']['picture'];
             if(isset($profileImage)){
-                $profileImage = "http://localhost/biblioteca/img/user.png";
-                // $profileImage = "https://remotehost.es/student33/dwes/img/user.png";
+                // $profileImage = "http://localhost/biblioteca/img/user.png";
+                $profileImage = "https://remotehost.es/student33/dwes/img/user.png";
             }
             //trata fecha
             $date = date_create($_SESSION['usuario']['joined_on']);
@@ -63,8 +63,8 @@
                 <form action="">
                     <button class="uk-button uk-button-text" type="button" name="editar">Editar Perfil</button>
                 </form>
-                <a class="uk-button uk-button-text" href="http://localhost/biblioteca/bd/bd_logout.php">Cerrar sesion</a>
-                <!-- <a class="uk-button uk-button-text" href="https://remotehost.es/student33/dwes/bd/bd_logout.php">Cerrar sesion</a> -->
+                <!-- <a class="uk-button uk-button-text" href="http://localhost/biblioteca/bd/bd_logout.php">Cerrar sesion</a> -->
+                <a class="uk-button uk-button-text" href="https://remotehost.es/student33/dwes/bd/bd_logout.php">Cerrar sesion</a>
             </div>
         </div>
 

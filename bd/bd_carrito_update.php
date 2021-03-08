@@ -5,8 +5,10 @@
         $book_id = $_POST['id'];
         $cantidad = $_POST['cantidad'];
         if($_SESSION['usuario']['member_type'] === 'partner'){
+            echo $_SESSION['usuario']['member_type'];
             $query = "UPDATE _33_shop_car SET cantidad = '$cantidad' where book_id = '$book_id' and member_type = 'partner' ";
         }else{
+            echo $_SESSION['usuario']['member_type'];
             $query = "UPDATE _33_shop_car SET cantidad = '$cantidad' where book_id = '$book_id' and member_type = 'gest' ";
         }        
         if($conn -> query($query))echo 'Cantida Actualizada correctamente';

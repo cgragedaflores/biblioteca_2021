@@ -22,15 +22,15 @@
         <nav class="uk-navbar-container" uk-navbar>
             <div class="uk-navbar-left">
             <!-- UNCOMENT FOR LOCALHOST -->
-                <a class="uk-navbar-item uk-logo" href="http://localhost/biblioteca/admin/index.php">Biblioteca Nazarick</a>
-                <!-- <a class="uk-navbar-item uk-logo" href="https://remotehost.es/student33/dwes/">Biblioteca Nazarick</a>  -->
+                <!-- <a class="uk-navbar-item uk-logo" href="http://localhost/biblioteca/admin/index.php">Biblioteca Nazarick</a> -->
+                <a class="uk-navbar-item uk-logo" href="https://remotehost.es/student33/dwes/admin/index.php">Biblioteca Nazarick</a> 
                 <ul class="uk-navbar-nav">
                     <li class="uk-active">
                         <a href="#">Libros</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="http://localhost/biblioteca/form/form_book_admin.php">Buscar</a></li>
-                                <!-- <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form/form_book_admin.php">Buscar</a></li> -->
+                                <!-- <li class="uk-active"><a href="http://localhost/biblioteca/form/form_book_admin.php">Buscar</a></li> -->
+                                <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form/form_book_admin.php">Buscar</a></li>
                             </ul>
                         </div>
                     </li>
@@ -38,8 +38,8 @@
                         <a href="#">Usuarios</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="http://localhost/biblioteca/form/form_user_admin.php">Buscar</a></li>
-                                <!-- <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form/form_user_admin.php">Buscar</a></li> -->
+                                <!-- <li class="uk-active"><a href="http://localhost/biblioteca/form/form_user_admin.php">Buscar</a></li> -->
+                                <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form/form_user_admin.php">Buscar</a></li>
                             </ul>
                         </div>
                     </li>
@@ -47,8 +47,8 @@
                         <a href="#">Reservas</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="http://localhost/biblioteca/form/form_reserve_admin.php">Buscar</a></li>
-                                <!-- <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form_reserve_admin.php">Buscar</a></li> -->
+                                <!-- <li class="uk-active"><a href="http://localhost/biblioteca/form/form_reserve_admin.php">Buscar</a></li> -->
+                                <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form_reserve_admin.php">Buscar</a></li>
                             </ul>
                         </div>
                     </li>

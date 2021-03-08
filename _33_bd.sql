@@ -76,16 +76,13 @@ create table if not exists _33_shop_car(
     book_id int,
     user_id int,
     member_type varchar(10),
-    cantidad int,
-    primary key(book_id,user_id)
+    cantidad int
 );
 
 /*FOREIGN KEYS */
-alter table _33_orders add Constraint fk_Orders_User foreign key(user_id) references _33_partners(user_id)
-on update cascade on delete cascade;
 
-alter table _33_shop_car add Constraint fk_shopCar_Book foreign key(book_id) references _33_book(book_id)
-on update cascade on delete cascade;
+/*alter table _33_shop_car add Constraint fk_shopCar_Book foreign key(book_id) references _33_book(book_id)
+on update cascade on delete cascade;*/
 
 alter table _33_reservations_log add 
 Constraint fk_reservationLog_books Foreign key(book_id) references _33_book(book_id)
@@ -109,15 +106,15 @@ on update cascade on delete cascade;
 insert into _33_location(module,_position,shelf)VALUES(1,'vertical','3');
 
 /*books*/
-insert into _33_book(isbn,title,author,editorial,location_id,inserted_on,book_status) VALUES
-('8401022878','Las Tinieblas y el Alba','Ken Follet','Plaza & Janes',1,now(),1),
-('B01MRXGBQK','El dia se perdio La cordura','Javier Castillo','SUMA',1,now(),1),
-('8408223550','La ciudad Blanca vol1','Eva Gracia Saenz de Urturi','Planeta',1,now(),1),
-('8408223551','La ciudad Blanca vol2','Eva Gracia Saenz de Urturi','Planeta',1,now(),1),
-('8408223552','La ciudad Blanca vol3','Eva Gracia Saenz de Urturi','Planeta',1,now(),1),
-('B087QS9GXJ','El enigma de la habitacion 622','Joel Dicker','ALFAGUARA ',1,now(),1),
-('8491293817','Redencion (Tinta Negra)','Fernando Gamboa','SUMA ',1,now(),1),
-('8491293817','Redencion (Tinta Negra)','Fernando Gamboa','SUMA ',1,now(),1);
+insert into _33_book(isbn,title,author,editorial,location_id,inserted_on,book_status,imageName,precio) VALUES
+('8401022878','Las Tinieblas y el Alba','Ken Follet','Plaza & Janes',1,now(),1,'',10),
+('B01MRXGBQK','El dia se perdio La cordura','Javier Castillo','SUMA',1,now(),1,'',10),
+('8408223550','La ciudad Blanca vol1','Eva Gracia Saenz de Urturi','Planeta',1,now(),1,'',10),
+('8408223551','La ciudad Blanca vol2','Eva Gracia Saenz de Urturi','Planeta',1,now(),1,'',10),
+('8408223552','La ciudad Blanca vol3','Eva Gracia Saenz de Urturi','Planeta',1,now(),1,'',10),
+('B087QS9GXJ','El enigma de la habitacion 622','Joel Dicker','ALFAGUARA ',1,now(),1,'',10),
+('8491293817','Redencion (Tinta Negra)','Fernando Gamboa','SUMA ',1,now(),1,'',10),
+('8491293817','Redencion (Tinta Negra)','Fernando Gamboa','SUMA ',1,now(),1,'',10);
 
 INSERT INTO `_33_book` (`book_id`, `isbn`, `title`, `author`, `editorial`, `location_id`, `publication_date`, `inserted_on`, `book_status`, `imageName`,`precio`) VALUES
 (9, '9788420455778', 'Linea de Fuego', 'Aurtor Pérez-Reverte', 'ALFAGUARA', 1, '2020-10-06', '2020-11-06 11:11:45', 1, '','10'),

@@ -187,10 +187,10 @@ $(document).ready(function () {
         });
         $(context).append(alert);
     }
-    function getUrl() {
-        return "http://localhost/biblioteca/"
-    }
     // function getUrl() {
-    //     return "https://remotehost.es/student33/dwes/"
+    //     return "http://localhost/biblioteca/"
     // }
+    function getUrl() {
+        return "https://remotehost.es/student33/dwes/"
+    }
 })

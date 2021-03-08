@@ -27,9 +27,11 @@
             $_SESSION['usuario']['address']        = $array['adress'];
             $_SESSION['usuario']['picture']        = $array['picture'];
             if($array['member_type'] === 'partner'){
-                header('Location: http://localhost/biblioteca/partner/index.php');
+                // header('Location: http://localhost/biblioteca/partner/index.php');
+                header('Location: https://remotehost.es/student33/dwes/partner/index.php');
             }else if($array['member_type'] === 'admin'){
-                header('Location: http://localhost/biblioteca/admin/index.php');
+                // header('Location: http://localhost/biblioteca/admin/index.php');
+                header('Location: https://remotehost.es/student33/dwes/admin/index.php');
             }
         }else{
             die('Usuario y Contraseña no encontrados');
