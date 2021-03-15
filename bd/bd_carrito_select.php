@@ -1,11 +1,12 @@
 <?php
 header('Content-Type: application/json;');
+header('Access-Control-Allow-Origin: *');
 include 'bd_connect.php';
 if (isset($_POST['user_id'])) {
     $use_id = $_POST['user_id'];
     $query = "SELECT _33_book.book_id,_33_book.title, _33_book.author,_33_book.imageName, _33_book.precio, _33_shop_car.cantidad, _33_shop_car.user_id, _33_shop_car.member_type,
     (_33_book.precio * _33_shop_car.cantidad) as 'subtotal' FROM _33_shop_car INNER JOIN _33_book on _33_shop_car.book_id = _33_book.book_id
-    WHERE user_id = '$use_id' and member_type = 'partner' ";
+    WHERE _33_shop_car.user_id = '$use_id' and member_type = 'partner' ";
 } else {
     $query = "SELECT _33_book.book_id,_33_book.title, _33_book.author,_33_book.imageName, _33_book.precio, _33_shop_car.cantidad, _33_shop_car.user_id, _33_shop_car.member_type,
     (_33_book.precio * _33_shop_car.cantidad) as 'subtotal' FROM _33_shop_car INNER JOIN _33_book on _33_shop_car.book_id = _33_book.book_id 

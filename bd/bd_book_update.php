@@ -17,8 +17,8 @@ if (isset($_POST['b_title'])) {
         $nombre_imagen = $title;
         $ext = pathinfo($_FILES['portada']['name'], PATHINFO_EXTENSION);
         $nombre_imagen = $title . "." . $ext;
-        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/biblioteca/img/front_page/';
-        move_uploaded_file($_FILES['portada']['tmp_name'], $carpeta_destino . $nombre_imagen);
+        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/biblioteca/img';
+        move_uploaded_file($_FILES['portada']['tmp_name'], $carpeta_destino.'/front_page/'. $nombre_imagen);
         //Insert user's on BDþ
         $sql_query = "UPDATE _33_book SET title = '$title', author = '$author',
         isbn = '$isbn', publication_date = '$pDate', editorial = '$editorial', imageName = '$nombre_imagen', location_id = '$location',

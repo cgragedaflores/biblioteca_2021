@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json;');
+header('Access-Control-Allow-Origin: *');
 include 'bd_connect.php';
 $query = "SELECT _33_reservations.reservation_id, _33_reservations.book_id, _33_reservations.partner_id,_33_reservations.inital_date,
 _33_reservations.return_date, _33_reservations.real_return_date,_33_partners.email, _33_book.title

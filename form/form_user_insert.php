@@ -2,7 +2,7 @@
 <main class='uk-width-1-1 uk-padding-small' uk-grid>
     <div class="uk-flex uk-margin uk-text-center uk-width-1-1">
         <div class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body">
-            <form class="uk-padding uk-width-1-1@s" action="http://localhost/biblioteca/bd/bd_user_insert.php" method="POST">
+            <form class="uk-padding uk-width-1-1@s" action="https://remotehost.es/student33/dwes/bd/bd_user_insert.php" method="POST">
                 <fieldset class="uk-fieldset uk-grid-small" uk-grid>
                     <legend class="uk-legend">Registrarse</legend>
                     <div class="uk-margin-small uk-width-1-2@s">
