@@ -58,9 +58,9 @@
                                 <div
                                     class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body">
                                     <!-- <form class="uk-padding uk-width-1-1@s"
-                                        action="http://localhost/biblioteca/bd/bd_login.php" method="POST"> -->
+                                        action="http://localhost/bibliotecalocal/bd/bd_login.php" method="POST"> -->
                                         <form class="uk-padding uk-width-1-1@s"
-                                        action="https://remotehost.es/student33/dwes/" method="POST">
+                                        action="https://remotehost.es/student33/dwes/bd/bd_login.php" method="POST">
                                         <fieldset class="uk-fieldset">
                                             <legend class="uk-legend">Login</legend>
                                             <div class="uk-margin uk-width-1-1@s">

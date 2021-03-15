@@ -134,7 +134,6 @@ $(document).ready(function () {
             type: 'POST',
             datatype: 'json',
             success: function (response) {
-                console.log(response);
                 let portada = '';
                 let template = '';
                 if (response.fail === true) {
@@ -228,7 +227,7 @@ $(document).ready(function () {
         }
     }
     // function getUrl() {
-    //     return "http://localhost/biblioteca/"
+    //     return "http://localhost/bibliotecalocal/"
     // }
     function getUrl() {
         return "https://remotehost.es/student33/dwes/"

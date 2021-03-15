@@ -48,7 +48,7 @@
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
                                 <!-- <li class="uk-active"><a href="http://localhost/biblioteca/form/form_reserve_admin.php">Buscar</a></li> -->
-                                <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form_reserve_admin.php">Buscar</a></li>
+                                <li class="uk-active"><a href="https://remotehost.es/student33/dwes/form/form_reserve_admin.php">Buscar</a></li>
                             </ul>
                         </div>
                     </li>

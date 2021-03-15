@@ -1,5 +1,6 @@
 <?php
 include 'bd_connect.php';
+header('Access-Control-Allow-Origin: *');
 if (isset($_POST['search'])) {
     $word = $_POST['search'];
     $query = "SELECT * FROM _33_partners WHERE email LIKE '%$word%' OR first_name LIKE '%$word%' ";

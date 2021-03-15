@@ -24,7 +24,7 @@
         <nav class="uk-navbar-container uk-margin" uk-navbar>
             <div class="nav-overlay uk-navbar-left">
                 <!-- <a class="uk-navbar-item uk-logo" href="http://localhost/biblioteca/partner/index.php">Biblioteca Nazarick</a> -->
-                <!-- <a class="uk-navbar-item uk-logo" href="https://remotehost.es/student33/dwes/partner/index.php">Biblioteca Nazarick</a> -->
+                <a class="uk-navbar-item uk-logo" href="https://remotehost.es/student33/dwes/partner/index.php">Biblioteca Nazarick</a>
                 <ul class="uk-navbar-nav">
                     <li class="uk-active">
                         <input class="uk-input uk-form-blank uk-form-width-medium uk-text-large" type="text" id='time'

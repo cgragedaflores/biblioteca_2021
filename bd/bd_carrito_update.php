@@ -11,7 +11,7 @@
             echo $_SESSION['usuario']['member_type'];
             $query = "UPDATE _33_shop_car SET cantidad = '$cantidad' where book_id = '$book_id' and member_type = 'gest' ";
         }        
-        if($conn -> query($query))echo 'Cantida Actualizada correctamente';
+        if($conn -> query($query))echo 'Cantidad Actualizada correctamente';
         else echo 'Query Error '.$conn -> error;
     }else{
         echo 'Los datos no se recibieron correctamente';

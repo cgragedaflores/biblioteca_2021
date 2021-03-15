@@ -149,8 +149,8 @@ insert into _33_partners(dni,first_name,surname,addres,email,passwd,birthdate,me
 /*reservations*/
 
 insert into _33_reservations() VALUES
-('0','1','9',now(),now(),now(),now()),
-('0','1','10',now(),now(),now(),now()),
-('0','2','11',now(),now(),now(),now()),
-('0','2','15',now(),now(),now(),now()),
-('0','3','19',now(),now(),now(),now());
+(null,'1','9',now(),now(),now(),now()),
+(null,'1','10',now(),now(),now(),now()),
+(null,'2','11',now(),now(),now(),now()),
+(null,'2','15',now(),now(),now(),now()),
+(null,'3','19',now(),now(),now(),now());

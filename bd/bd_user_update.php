@@ -14,10 +14,10 @@ if (isset($_POST['u_id'])) {
         $nombre_imagen = $nombre;
         $ext = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
         $nombre_imagen = $nombre . "." . $ext;
-        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/biblioteca/img/front_page/';
-        move_uploaded_file($_FILES['picture']['tmp_name'], $carpeta_destino . $nombre_imagen);
+        $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/dwes/img';
+        move_uploaded_file($_FILES['picture']['tmp_name'], $carpeta_destino.'/profile_img/',$nombre_imagen);
         $query = "UPDATE _33_partners SET first_name = '$nombre', surname='$apellido', dni = '$dni',
-     email = '$email', phone_number = '$telefono' set picture = '$nombre_imagen' WHERE user_id = '$user_id' ";
+     email = '$email', phone_number = '$telefono', picture = '$nombre_imagen' WHERE user_id = '$user_id' ";
     } else {
         $query = "UPDATE _33_partners SET first_name = '$nombre', surname='$apellido', dni = '$dni',
      email = '$email', phone_number = '$telefono' WHERE user_id = '$user_id' ";
@@ -28,5 +28,5 @@ if (isset($_POST['u_id'])) {
         $data = array('fail' => $conn->error, 'data' => $_POST);
     }
 
-    echo json_encode($data);
+    echo json_encode($data);    
 }

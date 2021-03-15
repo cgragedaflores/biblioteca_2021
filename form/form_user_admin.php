@@ -64,7 +64,8 @@ if ($_SESSION['usuario']['member_type'] === 'admin') {?>
         </div>
     </div>
 </main>
-<script src="http://localhost/biblioteca/js/ajax_usuarios.js"></script>
+<!-- <script src="https://remotehost.es/student33/dwes/js/ajax_usuarios.js"></script> -->
+<script src="http://localhost/bibliotecalocal/js/ajax_usuarios.js"></script>
 <?php
 }else{
     header('Location: ../index.php');

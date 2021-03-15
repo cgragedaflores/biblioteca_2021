@@ -1,6 +1,7 @@
 <?php
 include 'bd_connect.php';
 header('Content-Type: application/json;');
+header('Access-Control-Allow-Origin: *');
 if (isset($_POST['search'])) {
     $word = $_POST['search'];
     $query = "SELECT * FROM _33_book WHERE title LIKE '%$word%' OR author LIKE '%$word%' ";

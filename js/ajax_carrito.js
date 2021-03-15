@@ -153,7 +153,7 @@ $(document).ready(function () {
     }
     //uncomment for localhost
     // function getUrl() {
-    //     return "http://localhost/biblioteca/"
+     //    return "http://localhost/bibliotecalocal/"
     // }
     function getUrl() {
         return "https://remotehost.es/student33/dwes/"
