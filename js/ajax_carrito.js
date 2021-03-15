@@ -13,6 +13,7 @@ $(document).ready(function () {
             data: user_id,
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 if (response.fail === true) {
                     $('#cart_table').hide();
                     $('#TotalItems').hide();

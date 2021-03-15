@@ -33,6 +33,6 @@ if ($result->num_rows > 0) {
     }
     echo json_encode($json_array);
 } else {
-    $data = array('fail' => true);
+    $data = array('fail' => true, 'data' => $conn -> error, 'user_id' => $use_id);
     echo json_encode($data);
 }
