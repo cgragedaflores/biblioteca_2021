@@ -57,10 +57,10 @@
                             <div class="uk-flex uk-margin uk-text-center">
                                 <div
                                     class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body">
-                                    <!-- <form class="uk-padding uk-width-1-1@s"
-                                        action="http://localhost/bibliotecalocal/bd/bd_login.php" method="POST"> -->
-                                        <form class="uk-padding uk-width-1-1@s"
-                                        action="https://remotehost.es/student33/dwes/bd/bd_login.php" method="POST">
+                                    <form class="uk-padding uk-width-1-1@s"
+                                        action="http://localhost/bibliotecalocal/bd/bd_login.php" method="POST">
+                                        <!-- <form class="uk-padding uk-width-1-1@s"
+                                        action="https://remotehost.es/student33/dwes/bd/bd_login.php" method="POST"> -->
                                         <fieldset class="uk-fieldset">
                                             <legend class="uk-legend">Login</legend>
                                             <div class="uk-margin uk-width-1-1@s">
@@ -82,8 +82,11 @@
                                             </div>
                                         </fieldset>
                                         <span>Aun no estas Registrado <a
-                                                href="https://remotehost.es/student33/dwes/form/form_user_insert.php">Registrate
+                                                href="http://localhost/biblioteca/form/form_user_insert.php">Registrate
                                                 aqui</a></span>
+                                        <!-- <span>Aun no estas Registrado <a
+                                                href="https://remotehost.es/student33/dwes/form/form_user_insert.php">Registrate
+                                                aqui</a></span> -->
                                     </form>
                                 </div>
                             </div>

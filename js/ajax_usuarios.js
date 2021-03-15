@@ -169,10 +169,10 @@ $(document).ready(function () {
             });
         }
     }
-    // function getUrl() {
-    //     return "http://localhost/bibliotecalocal/"
-    // }
     function getUrl() {
-        return "https://remotehost.es/student33/dwes/";
+        return "http://localhost/bibliotecalocal/"
     }
+    // function getUrl() {
+    //     return "https://remotehost.es/student33/dwes/";
+    // }
 });
